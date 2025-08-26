@@ -5,7 +5,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.security.core.GrantedAuthority;
 
 import jakarta.persistence.*;
-import java.util.Objects;
+
 
 /**
  * Модель роли пользователя.
