@@ -29,6 +29,12 @@ public class Role implements GrantedAuthority {
     @Column(name = "role_name")
     private String roleName;
 
+    // Явно добавленный конструктор для roleName
+    public Role(String roleName) {
+        logger.debug("Создание роли с именем: {}", roleName);
+        this.roleName = roleName;
+    }
+
     /**
      * Возвращает имя роли для Spring Security.
      * @return Имя роли как строка авторизации.
