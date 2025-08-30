@@ -4,7 +4,7 @@ import jakarta.persistence.EntityNotFoundException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
+
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -12,6 +12,7 @@ import ru.kata.spring_boot_security_demo.models.Role;
 import ru.kata.spring_boot_security_demo.models.User;
 import ru.kata.spring_boot_security_demo.repositories.RoleRepository;
 import ru.kata.spring_boot_security_demo.repositories.UserRepository;
+import ru.kata.spring_boot_security_demo.util.UserNotFoundException;
 
 import java.util.HashSet;
 import java.util.List;
