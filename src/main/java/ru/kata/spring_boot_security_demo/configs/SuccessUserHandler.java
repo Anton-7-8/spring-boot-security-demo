@@ -2,14 +2,13 @@ package ru.kata.spring_boot_security_demo.configs;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import jakarta.servlet.ServletException;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.stereotype.Component;
 
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.Set;
 
@@ -26,29 +25,28 @@ public class SuccessUserHandler implements AuthenticationSuccessHandler {
     /**
      * Метод вызывается при успешной аутентификации.
      * Проверяет роли пользователя и перенаправляет на соответствующий URL.
-     * @param request Запрос от клиента.
-     * @param response Ответ сервера.
+     * @param httpServletRequest Запрос от клиента.
+     * @param httpServletResponse Ответ сервера.
      * @param authentication Объект аутентификации с данными пользователя.
      * @throws IOException Если возникает ошибка ввода-вывода.
      */
-
     @Override
-    public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException {
+    public void onAuthenticationSuccess(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Authentication authentication) throws IOException {
         logger.info("Успешная аутентификация для пользователя: {}", authentication.getName());
 
         Set<String> roles = AuthorityUtils.authorityListToSet(authentication.getAuthorities());
 
         if (roles.contains("ROLE_ADMIN")) {
             logger.debug("Перенаправление админа на /admin/users");
-            response.sendRedirect("/admin/users");
+            httpServletResponse.sendRedirect("/admin/users");
 
         } else if (roles.contains("ROLE_USER")) {
             logger.debug("Перенаправление пользователя на /user");
-            response.sendRedirect("/user");
+            httpServletResponse.sendRedirect("/user");
 
         } else {
             logger.warn("Неизвестная роль, перенаправление на /login");
-            response.sendRedirect("/login");
+            httpServletResponse.sendRedirect("/login");
         }
     }
 }

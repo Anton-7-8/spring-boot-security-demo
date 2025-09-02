@@ -24,6 +24,7 @@ public class UserController {
      * @param model Модель для передачи данных в представление.
      * @return Название шаблона для страницы пользователя (user).
      */
+    @RequestMapping
     public String user(@AuthenticationPrincipal User user, Model model) {
         logger.info("Запрос страницы профиля для пользователя: {}", user.getEmail());
         model.addAttribute("user", user);
