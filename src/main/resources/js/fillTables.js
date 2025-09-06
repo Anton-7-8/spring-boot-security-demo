@@ -17,7 +17,7 @@ async function dataAboutAllUsers() {
 // Функция для получения данных о текущем пользователе
 async function dataAboutCurrentUser() {
     try {
-        const response = await fetch("/api/admin/user");
+        const response = await fetch("/api/user/current");
         if (!response.ok) {
             throw new Error(`Ошибка получения данных текущего пользователя: ${response.statusText}`);
         }

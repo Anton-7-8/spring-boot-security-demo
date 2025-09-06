@@ -47,31 +47,6 @@ public class RESTController {
     }
 
     /**
-     * Возвращает текущего аутентифицированного пользователя.
-     * @param user Текущий пользователь.
-     * @return Ответ с данными пользователя.
-     */
-    @GetMapping("/user/current")
-    @Transactional(readOnly = true)
-    public ResponseEntity<User> getCurrentUser(@AuthenticationPrincipal User user) {
-        logger.info("Запрос текущего пользователя: {}", user.getEmail());
-        User currentUser = userService.getUserWithRoles(user.getId());
-        logger.debug("Возвращен пользователь: {}", currentUser.getEmail());
-        return ResponseEntity.ok(currentUser);
-    }
-
-    /**
-     * Возвращает данные текущего пользователя (упрощенный вариант).
-     * @param user Текущий пользователь.
-     * @return Ответ с данными пользователя.
-     */
-    @GetMapping("/user")
-    public ResponseEntity<User> getUser(@AuthenticationPrincipal User user) {
-        logger.info("Запрос данных пользователя: {}", user.getEmail());
-        return new ResponseEntity<>(user, HttpStatus.OK);
-    }
-
-    /**
      * Возвращает список всех пользователей.
      * @return Список пользователей в формате JSON.
      */

@@ -51,7 +51,7 @@ public class WebSecurityConfig  {
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/api/admin/**").hasRole("ADMIN") // Объединенное правило для всех операций /api/admin/**
                         .requestMatchers("/admin/**").hasRole("ADMIN") // Только админы могут обращаться к /admin/**
-                        .requestMatchers("/api/user/current").hasRole("USER") // Доступ для пользователей к текущему профилю
+                        .requestMatchers("/api/user/current").hasAnyRole("USER", "ADMIN") // Доступ для пользователей к текущему профилю
                         .requestMatchers("/api/user").hasRole("USER") // Пользователи могут обращаться к /api/user
                         .requestMatchers("/user").hasRole("USER") // Пользователи могут обращаться к /user
                         .requestMatchers("/login", "/js/**", "/css/**").permitAll() // Разрешить доступ к статическим ресурсам и логину
